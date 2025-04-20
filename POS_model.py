@@ -24,8 +24,8 @@ def creat_model():
     model = CascadeMiningDet(backbone, num_classes=len(CLASSES))
     model.to(device)
 
-    pth_path = '/home/stat-zx/model_service/parameters/swins_cmd.pth'
-    statdic = torch.load(pth_path)
+    pth_path = os.path.join(os.path.dirname(__file__), "parameters/swins_cmd.pth")
+    statdic = torch.load(pth_path, map_location="cpu")
     model.load_state_dict(statdic)
     model.eval()
 
